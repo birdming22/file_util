@@ -5,6 +5,16 @@
 # usage: bash cp_in_order.sh src_mp3_dir dest_mp3_dir
 #
 
+if [ $1="" ]; then
+    echo "usage: bash cp_in_order.sh src_mp3_dir dest_mp3_dir"
+    exit
+fi
+
+if [ $2="" ]; then
+    echo "usage: bash cp_in_order.sh src_mp3_dir dest_mp3_dir"
+    exit
+fi
+
 DST_DIR=$2
 cd "$1"
 DIR_LIST=$(ls)
@@ -17,6 +27,7 @@ for d in $DIR_LIST; do
         mkdir -p $DST_DIR$d
         FILE_LIST=$(ls *.mp3)
         for file in $FILE_LIST; do
+            echo "cp $file $DST_DIR$d"
             cp $file $DST_DIR$d
         done
         cd -
