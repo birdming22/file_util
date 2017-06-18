@@ -5,13 +5,15 @@
 # usage: bash cp_in_order.sh src_mp3_dir dest_mp3_dir
 #
 
-if [ $1="" ]; then
+# check if argument is empty
+if [ -z $1 ]; then
     echo "usage: bash cp_in_order.sh src_mp3_dir dest_mp3_dir"
     exit
 fi
 
-if [ $2="" ]; then
+if [ -z $2 ]; then
     echo "usage: bash cp_in_order.sh src_mp3_dir dest_mp3_dir"
+    echo "2"
     exit
 fi
 
@@ -31,6 +33,9 @@ for d in $DIR_LIST; do
             cp $file $DST_DIR$d
         done
         cd -
+    else
+        echo "cp $d $DST_DIR"
+        cp $d $DST_DIR
     fi
     let count=$count+1
 done
