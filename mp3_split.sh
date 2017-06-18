@@ -2,16 +2,20 @@
 
 # check if argument is empty
 if [ -z $1 ]; then
-  echo "usage: bash mp3_split.sh target_dir"
+  echo "usage: bash mp3_split.sh src_dir dst_dir"
+  exit
+fi
+if [ -z $2 ]; then
+  echo "usage: bash mp3_split.sh src_dir dst_dir"
   exit
 fi
 
-TARGET_DIR=$1
+SRC_DIR=$1
 cd $1
-FILE_LIST=$(ls $TARGET_DIR/*.mp3)
+FILE_LIST=$(ls $SRC_DIR/*.mp3)
 SPLIT_TIME=59.59
 
 for file in $FILE_LIST; do
-    mp3splt -t $SPLIT_TIME $file
+    mp3splt -t $SPLIT_TIME $file -d $2
 done
 
