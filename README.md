@@ -10,3 +10,7 @@ When you need file copy in order
 
     usage: bash batch_rename.sh target_dir
 
+## Replace spaces in file names
+
+    find -name "* *" -type d | rename 's/ /_/g'    # do the directories first
+    find -name "* *" -type f | rename 's/ /_/g'
